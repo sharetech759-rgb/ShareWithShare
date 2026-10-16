@@ -9,10 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -q "*.zip"
-      - name: Add missing permission
-        run: |
-          sed -i 's#<uses-permission android:name="android.permission.INTERNET"/>#<uses-permission android:name="android.permission.INTERNET"/><uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>#' ShareWithShare/app/src/main/AndroidManifest.xml
+      - run: for z in *.zip; do unzip -q -o "$z"; done
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
